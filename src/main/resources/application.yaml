@@ -1,0 +1,60 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: user
+    password: password
+
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+
+  data:
+    redis:
+      port: 6379
+      host: localhost
+      channels:
+        profile-view:
+          name: profile_view_channel
+        like-channel:
+          name: like-channel
+        follower-event-channel:
+          name: follower_event_channel
+        goal-completed-event-channel:
+          name: goal_completed_event_channel
+        comment-event-channel:
+          name: comment_event_channel
+        project-view-channel:
+          name: project_view_channel
+        premium-bought-channel:
+          name: premium_bought_channel
+        post-view-channel:
+          name: post_view_channel
+        mentorship-request-channel:
+          name: mentorship-request-channel
+        fund-raised-channel:
+          name: fund-raised-channel
+
+server:
+  port: 8086
+
+logging:
+  level:
+    root: info
+
+project-service:
+  host: localhost
+  port: 8082
+
+springdoc:
+  swagger-ui:
+    enabled: true
+    url: /swagger/OpenAPI.yaml
